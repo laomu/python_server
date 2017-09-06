@@ -15,30 +15,30 @@ events {                            # nginx工作模式配置
 
 http {                                # http设置
     ....
-    
+
     server {                        # 服务器主机配置
         ....
         location {                    # 路由配置
             ....
         }
-        
+
         location path {
             ....
         }
-        
+
         location otherpath {
             ....
         }
     }
-    
+
     server {
         ....
-        
+
         location {
             ....
         }
     }
-    
+
     upstream name {                    # 负载均衡配置
         ....
     }
@@ -74,9 +74,7 @@ worker_rlimit_nofile 1024;
 * worker\_processes指定nginx要开启的子进程数量，运行过程中监控每个进程消耗内存\(一般几M~几十M不等\)根据实际情况进行调整，通常数量是CPU内核数量的整数倍
 * error\_log定义错误日志文件的位置及输出级别【debug / info / notice / warn / error / crit】
 * pid用来指定进程id的存储文件的位置
-* worker_rlimit_nofile用于指定一个进程可以打开最多文件数量的描述
-
-
+* worker\_rlimit\_nofile用于指定一个进程可以打开最多文件数量的描述
 
 ### event 模块
 
@@ -96,19 +94,66 @@ event {
 * multi\_accept 配置指定nginx在收到一个新连接通知后尽可能多的接受更多的连接
 * use epoll 配置指定了线程轮询的方法，如果是linux2.6+，使用epoll，如果是BSD如Mac请使用Kqueue
 
-
-
 ### http模块
 
 作为web服务器，http模块是nginx最核心的一个模块，配置项也是比较多的
 
 ```
+http {
+	##
+	# Basic Settings
+	##
 
+	sendfile on;
+	tcp_nopush on;
+	tcp_nodelay on;
+	keepalive_timeout 65;
+	types_hash_max_size 2048;
+	# server_tokens off;
+
+	# server_names_hash_bucket_size 64;
+	# server_name_in_redirect off;
+
+	include /etc/nginx/mime.types;
+	default_type application/octet-stream;
+
+	##
+	# SSL Settings
+	##
+
+	ssl_protocols TLSv1 TLSv1.1 TLSv1.2; # Dropping SSLv3, ref: POODLE
+	ssl_prefer_server_ciphers on;
+
+	##
+	# Logging Settings
+	##
+
+	access_log /var/log/nginx/access.log;
+	error_log /var/log/nginx/error.log;
+
+	##
+	# Gzip Settings
+	##
+
+	gzip on;
+	gzip_disable "msie6";
+
+	# gzip_vary on;
+	# gzip_proxied any;
+	# gzip_comp_level 6;
+	# gzip_buffers 16 8k;
+	# gzip_http_version 1.1;
+	# gzip_types text/plain text/css application/json application/javascript
+ text/xml application/xml application/xml+rss text/javascript;
+
+	##
+	# Virtual Host Configs
+	##
+
+	include /etc/nginx/conf.d/*.conf;
+	include /etc/nginx/sites-enabled/*;
+}
 ```
-
-
-
-
 
 
 
