@@ -152,8 +152,34 @@ http {
 
     include /etc/nginx/conf.d/*.conf;
     include /etc/nginx/sites-enabled/*;
-}
+
 ```
+
+基础配置
+
+sendfile on;
+
+	tcp\_nopush on;
+
+	tcp\_nodelay on;
+
+	keepalive\_timeout 65;
+
+	types\_hash\_max\_size 2048;
+
+	\# server\_tokens off;
+
+
+
+	\# server\_names\_hash\_bucket\_size 64;
+
+	\# server\_name\_in\_redirect off;
+
+
+
+	include /etc/nginx/mime.types;
+
+	default\_type application/octet-stream;
 
 
 
