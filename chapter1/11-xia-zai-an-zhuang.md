@@ -24,13 +24,13 @@ https://nginx.org/en/download.html
 D:/resp_application/nginx-1.13.5> nginx
 ```
 
-### 
+### ![](/assets/n20)
 
 ### 访问nginx
 
-打开浏览器，输入地址：[http://localhost，访问页面，出现如下页面表示访问成功!\[\]\(/assets/n13](http://localhost，访问页面，出现如下页面表示访问成功![]%28/assets/n13)\)
+打开浏览器，输入地址：[http://localhost，访问页面，出现如下页面表示访问](http://localhost，访问页面，出现如下页面表示访问成功![]%28/assets/n13)成功
 
-### 
+### ![](/assets/呢1)
 
 ### 停止nginx
 
