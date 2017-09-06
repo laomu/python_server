@@ -154,7 +154,7 @@ http {
     include /etc/nginx/sites-enabled/*;
 ```
 
-1\) **基础配置  
+1\) **基础配置    
 **
 
 ```
@@ -209,6 +209,93 @@ open_file_cache 打开缓存的同时也指定了缓存最大数目，以及缓�
 open_file_cache_valid 在open_file_cache中指定检测正确信息的间隔时间。
 open_file_cache_min_uses 定义了open_file_cache中指令参数不活动时间期间里最小的文件数。
 open_file_cache_errors 指定了当搜索一个文件时是否缓存错误信息，也包括再次给配置中添加文件。我们也包括了服务器模块，这些是在不同文件中定义的。如果你的服务器模块不在这些位置，你就得修改这一行来指定正确的位置。
+```
+
+
+
+### server模块
+
+srever模块配置是http模块中的一个子模块，用来定义一个虚拟访问主机，也就是一个虚拟服务器的配置信息
+
+```
+server {
+	listen		80;
+	server_name localhost	192.168.1.100;
+	root		/nginx/www;
+	index		index.php index.html index.html;
+	charset		utf-8;
+	access_log	logs/access.log;
+	error_log	logs/error.log;
+	......
+}
+```
+
+
+
+核心配置信息如下：
+
+* server：一个虚拟主机的配置，一个http中可以配置多个server
+
+* server\_name：用力啊指定ip地址或者域名，多个配置之间用空格分隔
+
+* root：表示整个server虚拟主机内的根目录，所有当前主机中web项目的根目录
+
+* index：用户访问web网站时的全局首页
+
+* charset：用于设置www/路径中配置的网页的默认编码格式
+
+* access\_log：用于指定该虚拟主机服务器中的访问记录日志存放路径
+
+* error\_log：用于指定该虚拟主机服务器中访问错误日志的存放路径
+
+### location模块
+
+location模块是nginx配置中出现最多的一个配置，主要用于配置路由访问信息
+
+在路由访问信息配置中关联到反向代理、负载均衡等等各项功能，所以location模块也是一个非常重要的配置模块
+
+
+
+**基本配置**
+
+```
+location / {
+	root	/nginx/www;
+	index	index.php index.html index.htm;
+}
+```
+
+location /：表示匹配访问根目录
+
+root：用于指定访问根目录时，访问虚拟主机的web目录
+
+index：在不指定访问具体资源时，默认展示的资源文件列表
+
+
+
+**反向代理配置方式**
+
+通过反向代理代理服务器访问模式，通过proxy\_set配置让客户端访问透明化
+
+```
+location / {
+	proxy_pass http://localhost:8888;
+	proxy_set_header X-real-ip $remote_addr;
+	proxy_set_header Host $http_host;
+}
+```
+
+
+
+**uwsgi配置**
+
+wsgi模式下的服务器配置访问方式
+
+```
+location / {
+	include uwsgi_params;
+	uwsgi_pass localhost:8888
+}
 ```
 
 
