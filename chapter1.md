@@ -1,4 +1,4 @@
-# 1. nginx概述
+# nginx概述
 
 
 
