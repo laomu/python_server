@@ -44,7 +44,7 @@ D:/resp_application/nginx-1.13.5> nginx -s stop
 D:/resp_application/nginx-1.13.5> nginx -s quit
 ```
 
-### 
+### ![](/assets/n19)
 
 ### 2. ubuntu安装
 
