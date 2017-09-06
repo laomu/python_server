@@ -154,7 +154,7 @@ http {
     include /etc/nginx/sites-enabled/*;
 ```
 
-1\) **基础配置      
+1\) **基础配置        
 **
 
 ```
@@ -290,7 +290,32 @@ location / {
 
 ### upstream模块
 
+upstream模块主要负责负载均衡的配置，通过默认的轮询调度方式来分发请求到后端服务器
 
+简单的配置方式如下
+
+```
+upstream name {
+	ip_hash;
+	server 192.168.1.100:8000;
+	server 192.168.1.100:8001 down;
+	server 192.168.1.100:8002 max_fails=3;
+	server 192.168.1.100:8003 fail_timeout=20s;
+	server 192.168.1.100:8004 max_fails=3 fail_timeout=20s;
+}
+```
+
+核心配置信息如下
+
+* ip\_hash：指定请求调度算法，默认是weight权重轮询调度，可以指定
+
+* server host:port：分发服务器的列表配置
+
+* -- down：表示该主机暂停服务
+
+* -- max\_fails：表示失败最大次数，超过失败最大次数暂停服务
+
+* -- fail\_timeout：表示如果请求受理失败，暂停指定的时间之后重新发起请求
 
 
 
