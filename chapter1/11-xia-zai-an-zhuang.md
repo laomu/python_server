@@ -12,6 +12,8 @@ https://nginx.org/en/download.html
 
 ![](/assets/n14)
 
+### 
+
 ### 启动nginx
 
 1） 直接双击该目录下的nginx.exe，即可启动nginx服务器
@@ -22,9 +24,13 @@ https://nginx.org/en/download.html
 D:/resp_application/nginx-1.13.5> nginx
 ```
 
+### 
+
 ### 访问nginx
 
 打开浏览器，输入地址：[http://localhost，访问页面，出现如下页面表示访问成功!\[\]\(/assets/n13](http://localhost，访问页面，出现如下页面表示访问成功![]%28/assets/n13)\)
+
+### 
 
 ### 停止nginx
 
@@ -38,6 +44,8 @@ D:/resp_application/nginx-1.13.5> nginx -s stop
 D:/resp_application/nginx-1.13.5> nginx -s quit
 ```
 
+### 
+
 ### 2. ubuntu安装
 
 按照正常软件的安装方式，直接通过如下命令进行安装：
@@ -50,6 +58,8 @@ $ sudo apt-get install nginx
 
 安装完成即可，在/usr/sbin/目录下是nginx命令所在目录，在/etc/nginx/目录下是nginx所有的配置文件，用于配置nginx服务器以及负载均衡等信息
 
+##### 
+
 ##### 查看nginx进程是否启动
 
 ```
@@ -60,6 +70,10 @@ nginx会自动根据当前主机的CPU的内核数目创建对应的进程数量
 
 ![](/assets/n16)
 
+> 备注：这里启动的服务进程其实是两个进程，因为nginx进程在启动的时候，每个进程会附带一个守护进程，用于保护正式进程不被异常终止；如果守护进程一旦返现nginx继承被终止了，会自动重启该进程。
+
+##### 
+
 ##### 启动nginx服务器命令
 
 直接执行nginx会按照默认的配置文件进行服务器的启动
@@ -69,6 +83,8 @@ $ nginx
 ```
 
 ![](/assets/n17)
+
+##### 
 
 ##### 停止nginx服务命令
 
@@ -82,9 +98,13 @@ $ nginx -s quit
 
 ![](/assets/n18)
 
+##### 
+
 ##### 重新启动加载
 
 同样也可以使用命令reopen和reload来重新启动nginx或者重新加载配合着文件。
+
+### 
 
 ### 3. mac os安装
 
